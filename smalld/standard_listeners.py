@@ -119,6 +119,8 @@ class Heartbeat:
         if not self.thread or not self.thread.is_alive():
             self.thread = Thread(target=self.run_heartbeat_loop)
             self.thread.start()
+        else:
+            self.received_ack.set()
 
     def on_heartbeat(self, data):
         self.send_heartbeat()
